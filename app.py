@@ -44,7 +44,7 @@ class ImagetoPDFConverter:
         # Treeview Style
         style = ttk.Style()
         style.configure('Treeview', background='#333333', foreground='#FFFFFF', fieldbackground='#333333', font=('Helvetica', 10))
-        style.configure('Treeview.Heading', background='#444444', foreground='#FFFFFF', font=('Helvetica', 12, 'bold'))
+        style.configure('Treeview.Heading', background='#444444', foreground='#000000', font=('Helvetica', 12, 'bold'))
 
         # Preview Label
         preview_label = tk.Label(main_frame, text="Preview", bg='#2E2E2E', fg='#FFFFFF', font=("Helvetica", 12, "bold"))
@@ -57,10 +57,10 @@ class ImagetoPDFConverter:
         self.canvas = Canvas(preview_frame, bg='#333333', height=200)
         self.canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
-        scrollbar = Scrollbar(preview_frame, orient="horizontal", command=self.canvas.xview)
-        scrollbar.pack(side=tk.BOTTOM, fill=tk.X)
+        scrollbar = Scrollbar(preview_frame, orient="vertical", command=self.canvas.xview)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 
-        self.canvas.configure(xscrollcommand=scrollbar.set)
+        self.canvas.configure(yscrollcommand=scrollbar.set)
         self.canvas.bind('<Configure>', lambda e: self.canvas.config(scrollregion=self.canvas.bbox("all")))
 
         self.preview_container = tk.Frame(self.canvas, bg='#333333')
